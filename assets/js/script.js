@@ -2,8 +2,25 @@
 var APIKeyOW = "ca5c36fad955c2432c0ac7166c71cfdd";
 // Variables to store location info
 var city;
+var pastCitiesArray = [];
 
-city = "San Francisco";
+city = "San Diego";
+
+// This function saves the entered city name to local storage and builds a running history of entered city names
+function saveCityName() {
+// If nothing exists in local storage, add the city to the pastCitiesArray, stringify the array, and store it in local storage.
+if (localStorage.getItem("storedCities") === null) {
+    pastCitiesArray.unshift(city);
+    localStorage.setItem("storedCities", JSON.stringify(pastCitiesArray));
+} else {
+    // If cities exist in local storage, parse the stored data into the pastCitiesArray, then add the city to the beginning of the array, then stringify the array and store it in local storage.
+    pastCitiesArray = JSON.parse(localStorage.getItem("storedCities"));
+    pastCitiesArray.unshift(city);
+    console.log(pastCitiesArray);
+    localStorage.setItem("storedCities", JSON.stringify(pastCitiesArray)); 
+}
+}
+
 
 // This function obtains the current weather for the city from Open Weather
 function getCurrentWxApi() {
@@ -117,4 +134,5 @@ function get5DayForecastApi() {
 
 
 getCurrentWxApi();
-get5DayForecastApi()
+get5DayForecastApi();
+// saveCityName(); //This function will need to be executed on the click of the submit button
