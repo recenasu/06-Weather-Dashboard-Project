@@ -51,7 +51,10 @@ var pastCitiesArray = [];
 city = "Phoenix";
 var today = dayjs();
 var dayOne = today.add(1, "day");
-console.log(dayOne);
+var dayTwo = today.add(2, "day");
+var dayThree = today.add(3, "day");
+var dayFour = today.add(4, "day");
+var dayFive = today.add(5, "day");
 
 // This function saves the entered city name to local storage and builds a running history of entered city names
 function saveCityName() {
@@ -155,7 +158,7 @@ function get5DayForecastApi() {
             console.log(day2Winds);
             console.log(day2Icon);
             // Populate Day 2 weather HTML Elements with values
-            day2DayDisplay.textContent = dayOne;
+            day2DayDisplay.textContent = dayTwo;
             day2TempDisplay.textContent = "Temp: " + day2Temp + " F";
             day2WindsDisplay.textContent = "Wind: " + day2Winds + " MPH";
             day2HumidDisplay.textContent = "Humidity: " + day2Humid + " %";
@@ -173,7 +176,7 @@ function get5DayForecastApi() {
             console.log(day3Winds);
             console.log(day3Icon);
             // Populate Day 3 weather HTML Elements with values
-            day3DayDisplay.textContent = dayOne;
+            day3DayDisplay.textContent = dayThree;
             day3TempDisplay.textContent = "Temp: " + day3Temp + " F";
             day3WindsDisplay.textContent = "Wind: " + day3Winds + " MPH";
             day3HumidDisplay.textContent = "Humidity: " + day3Humid + " %";
@@ -191,7 +194,7 @@ function get5DayForecastApi() {
             console.log(day4Winds);
             console.log(day4Icon);
             // Populate Day 4 weather HTML Elements with values
-            day4DayDisplay.textContent = dayOne;
+            day4DayDisplay.textContent = dayFour;
             day4TempDisplay.textContent = "Temp: " + day4Temp + " F";
             day4WindsDisplay.textContent = "Wind: " + day4Winds + " MPH";
             day4HumidDisplay.textContent = "Humidity: " + day4Humid + " %";
@@ -209,7 +212,7 @@ function get5DayForecastApi() {
             console.log(day5Winds);
             console.log(day5Icon);
             // Populate Day 5 weather HTML Elements with values
-            day5DayDisplay.textContent = dayOne;
+            day5DayDisplay.textContent = dayFive;
             day5TempDisplay.textContent = "Temp: " + day5Temp + " F";
             day5WindsDisplay.textContent = "Wind: " + day5Winds + " MPH";
             day5HumidDisplay.textContent = "Humidity: " + day5Humid + " %";
