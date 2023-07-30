@@ -2,6 +2,17 @@
 var APIKeyOW = "ca5c36fad955c2432c0ac7166c71cfdd";
 var APIKeyForecast = "b9c52d9a40932cac560e79e5bc1842fc";
 
+// Variables for city entry field and button
+var cityEntryEl = document.getElementById("formGroupExampleInput");
+var getWeatherEl = document.getElementById("getWeatherButton");
+
+// Variables for city history buttons
+var city1ButtonEl = document.getElementById("city1History");
+var city2ButtonEl = document.getElementById("city2History");
+var city3ButtonEl = document.getElementById("city3History");
+var city4ButtonEl = document.getElementById("city4History");
+var city5ButtonEl = document.getElementById("city5History");
+
 // Variables for current weather html elements
 var currentDayDisplay = document.getElementById("dayDisp");
 var currentCityDisplay = document.getElementById("cityDisp");
@@ -45,16 +56,40 @@ var day5WindsDisplay = document.getElementById("day5WindsDisp");
 var day5HumidDisplay = document.getElementById("day5HumidDisp");
 var day5IconDisplay = document.getElementById("day5IconDisp");
 // Variables to store location info
-var city;
+var city = "Timbuktu";
 var pastCitiesArray = [];
 
-city = "Phoenix";
 var today = dayjs();
 var dayOne = today.add(1, "day");
 var dayTwo = today.add(2, "day");
 var dayThree = today.add(3, "day");
 var dayFour = today.add(4, "day");
 var dayFive = today.add(5, "day");
+
+
+// This function loads the running history of entered city names.
+function loadHistory() {
+    
+    // set default weather location
+    getCurrentWxApi();
+    get5DayForecastApi();
+    //    If nothing exists in local storage, populate the pastCitiesArray with "-" values.
+    if (localStorage.getItem("storedCities") === null) {
+        pastCitiesArray = ["-", "-", "-", "-", "-"];
+    } else {
+        // If scores exist in local storage, parse the stored data into the scoresArray, then add the last score to the beginning of the scoresArray. Then stringify the changed array and store it in local storage.
+        pastCitiesArray = JSON.parse(localStorage.getItem("storedCities"));
+    }
+    //Add labels to the history buttons 
+    city1ButtonEl.textContent = pastCitiesArray[0];
+    city2ButtonEl.textContent = pastCitiesArray[1];
+    city3ButtonEl.textContent = pastCitiesArray[2];
+    city4ButtonEl.textContent = pastCitiesArray[3];
+    city5ButtonEl.textContent = pastCitiesArray[4];
+    return;
+
+    
+}
 
 // This function saves the entered city name to local storage and builds a running history of entered city names
 function saveCityName() {
@@ -69,6 +104,12 @@ function saveCityName() {
         console.log(pastCitiesArray);
         localStorage.setItem("storedCities", JSON.stringify(pastCitiesArray));
     }
+    //Add labels to the history buttons 
+    city1ButtonEl.textContent = pastCitiesArray[0];
+    city2ButtonEl.textContent = pastCitiesArray[1];
+    city3ButtonEl.textContent = pastCitiesArray[2];
+    city4ButtonEl.textContent = pastCitiesArray[3];
+    city5ButtonEl.textContent = pastCitiesArray[4];
 }
 
 
@@ -222,7 +263,91 @@ function get5DayForecastApi() {
         })
 }
 
+loadHistory();
 
-getCurrentWxApi();
-get5DayForecastApi();
-// saveCityName(); //This function will need to be executed on the click of the submit button
+getWeatherEl.addEventListener("click", function () {
+    city = cityEntryEl.value.trim();
+    console.log(city);
+    // If an invalid value was entered, notify the user.
+    if (cityEntryEl.value === "") {
+        cityEntryEl.style.color = "yellow";
+    } else {
+        // If a valid value was entered, proceed
+        getCurrentWxApi();
+        get5DayForecastApi();
+        saveCityName();
+    }
+})
+
+city1ButtonEl.addEventListener("click", function () {
+    // If button displays no city name, do nothing.
+    if (pastCitiesArray[0] === "-") {
+        return;
+    } else {
+        // If a valid value was entered, proceed
+        city = pastCitiesArray[0];
+    console.log(city);
+        getCurrentWxApi();
+        get5DayForecastApi();
+        saveCityName();
+    }
+})
+
+city2ButtonEl.addEventListener("click", function () {
+    // If button displays no city name, do nothing.
+    if (pastCitiesArray[1] === "-") {
+        return;
+    } else {
+        // If a valid value was entered, proceed
+        city = pastCitiesArray[1];
+    console.log(city);
+        getCurrentWxApi();
+        get5DayForecastApi();
+        saveCityName();
+    }
+})
+
+city3ButtonEl.addEventListener("click", function () {
+    // If button displays no city name, do nothing.
+    if (pastCitiesArray[2] === "-") {
+        return;
+    } else {
+        // If a valid value was entered, proceed
+        city = pastCitiesArray[2];
+    console.log(city);
+        getCurrentWxApi();
+        get5DayForecastApi();
+        saveCityName();
+    }
+})
+
+city4ButtonEl.addEventListener("click", function () {
+    // If button displays no city name, do nothing.
+    if (pastCitiesArray[3] === "-") {
+        return;
+    } else {
+        // If a valid value was entered, proceed
+        city = pastCitiesArray[3];
+    console.log(city);
+        getCurrentWxApi();
+        get5DayForecastApi();
+        saveCityName();
+    }
+})
+
+city5ButtonEl.addEventListener("click", function () {
+    // If button displays no city name, do nothing.
+    if (pastCitiesArray[4] === "-") {
+        return;
+    } else {
+        // If a valid value was entered, proceed
+        city = pastCitiesArray[4];
+    console.log(city);
+        getCurrentWxApi();
+        get5DayForecastApi();
+        saveCityName();
+    }
+})
+
+
+
