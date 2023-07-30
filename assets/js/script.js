@@ -1,6 +1,5 @@
 // Variable to store API key for Open Weather
 var APIKeyOW = "ca5c36fad955c2432c0ac7166c71cfdd";
-var APIKeyForecast = "b9c52d9a40932cac560e79e5bc1842fc";
 
 // Variables for city entry field and button
 var cityEntryEl = document.getElementById("formGroupExampleInput");
@@ -263,8 +262,10 @@ function get5DayForecastApi() {
         })
 }
 
+// Load the search history on page launch
 loadHistory();
 
+// Event listeners for search history buttons
 getWeatherEl.addEventListener("click", function () {
     city = cityEntryEl.value.trim();
     console.log(city);
